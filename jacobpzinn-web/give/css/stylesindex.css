@@ -1,0 +1,243 @@
+:root {
+    --primary: #f2a488;
+    --primary-dark: #2D3142;
+    --primary-orange: #FF8B03;
+    --dark-blue: #4C87A6;
+    --dark-tan: #C7887F;
+    --dark-purple: #734a51;
+    --primary-gradient: linear-gradient(to bottom right, var(--primary-orange), #C7887F, var(--primary));
+    --gray: rgb(128, 128, 128);
+    --light-gray: rgb(169, 169, 169);
+    --lighter-gray: rgb(211, 211, 211);
+    --dark-gray: rgb(105, 105, 105);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Lato", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.button {
+    padding: .5em 1em;
+    border-radius: 2em;
+    border: solid 1px var(--primary);
+    color: var(--primary);
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.button:hover {
+    background-image: var(--primary-gradient);
+    text-decoration: none;
+    background-image: var(--primary-gradient);
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.test {
+    border: red solid 1px;
+}
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.text-white {
+    color: white;
+}
+
+.page {
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+
+/* NAVIGATION */
+
+.primary-header {
+    align-items: center;
+}
+
+.logo {
+    margin: 2rem;
+    height: 2.3rem;
+    object-fit: contain;
+}
+
+.primary-navigation {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1000;
+    background-color: transparent;
+    backdrop-filter: blur(.3rem);
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+.nav-link {
+    padding-bottom: .5em;
+}
+
+.nav-link:hover {
+    border-bottom: var(--primary) 2px solid;
+}
+
+.active {
+    border-bottom: var(--primary) 2px solid;
+    font-weight: 800;
+}
+
+@media (max-width: 35em) {
+    .primary-navigation {
+        position: fixed;
+        inset: 0 0 0 40%;
+        --gap: 2.5rem;
+        background-color: hsl(0, 0%, 0%, .15);
+        flex-direction: column;
+        padding: min(30vh, 10rem) 2em;
+        transform: translateX(100%);
+        transition: transform 250ms ease-out;
+    }
+    .primary-navigation[data-visible="true"] {
+        transform: translateX(0%);
+    }
+    .mobile-nav-toggle {
+        position: absolute;
+        display: block;
+        background-image: url("../images/menu_black_24dp.svg");
+        top: 2rem;
+        width: 2rem;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        aspect-ratio: 1;
+        border: 0;
+        right: 2rem;
+        z-index: 9999;
+    }
+    .mobile-nav-toggle[data-visible="true"] {
+        background-image: url(../images/close_black_24dp.svg);
+    }
+    .active {
+        border-bottom: 0;
+    }
+}
+
+@media (min-width: 35em) {
+    html {
+        font-size: 18px;
+    }
+}
+
+
+/* SEARCH BAR */
+
+.searchbar {
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+.textarea {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    resize: both;
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 1px solid var(--primary);
+}
+
+.textarea:hover {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+
+.textarea:focus-within {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+    outline: none;
+}
+
+.textarea[contenteditable]:empty::before {
+    content: "I like the way you laugh";
+    color: gray;
+}
+
+
+/* HOME CONTENT */
+
+main {
+    justify-content: center;
+}
+
+.content {
+    width: 60vw;
+    flex-direction: column;
+}
+
+.title {
+    padding: 0;
+    margin: 0;
+}
+
+.button p {
+    padding: 0 .3em;
+}
+
+.input-title p {
+    font-weight: 200;
+    color: var(--light-gray);
+}
+
+
+/* FOOTER */
+
+footer {
+    background-color: darkgray;
+    color: white;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 40px;
+    width: 100%;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+}
+
+footer img {
+    width: 80px;
+}
+
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 480px) {}
+
+
+/* Tablet Styles */
+
+@media only screen and (min-width: 480px) and (max-width: 960px) {}
+
+
+/* Desktop Styles */
+
+@media only screen and (min-width: 961px) {}
