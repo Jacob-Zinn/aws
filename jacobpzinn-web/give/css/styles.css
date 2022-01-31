@@ -49,6 +49,11 @@ a {
     color: black;
 }
 
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
 .test {
     border: red solid 1px;
 }
