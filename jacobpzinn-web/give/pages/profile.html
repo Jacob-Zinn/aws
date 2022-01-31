@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>give - inspiration</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Our first page">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="../js/nav.js" defer></script>
+</head>
+
+<body>
+
+    <div class="page flex">
+        <header class="primary-header flex">
+
+            <div>
+                <a href="#"><img class="logo" src="../images/give-sm.png" alt="give logo"></a>
+            </div>
+
+            <nav>
+                <ul id="primary-navigation" data-visible="false" class="nav primary-navigation flex">
+                    <li class="nav-a"><a href="../index.html">home</a></li>
+                    <li class="active-nav nav-a"><a href="#">inspiration</a></li>
+                    <li class="nav-a"><a href="profile.html">profile</a></li>
+                </ul>
+            </nav>
+
+            <button data-visible="false" class="mobile-nav-toggle"></button>
+        </header>
+
+
+
+        <main id="profile-main" class="flex">
+            <div class="content flex">
+
+                <div class="profile-info-container flex">
+                    <div class="profile-photo-container flex">
+                        <div class="profile-photo">
+                            <img src="../images/headshot.jpg" alt="profile photo">
+                        </div>
+                    </div>
+
+                    <div class="profile-info flex">
+
+                        <div class="flex flex-wrap">
+                            <div class="flex">
+                                <p class="field-title text-gray">first name:</p>
+                                <p>Jacob</p>
+                            </div>
+
+                            <div class="flex">
+                                <p class="field-title text-gray">last name:</p>
+                                <p>Zinn</p>
+                            </div>
+
+                            <div class="flex">
+                                <p class="field-title text-gray">email:</p>
+                                <p>test@gmail.com</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+                <ul class="nav nav-tabs" id="messagesTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="nav-sent-tab" data-toggle="tab" href="#nav-sent" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-received-tab" data-toggle="tab" href="#nav-received" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="messagesTabContent">
+                    <div class="tab-pane fade show active" id="nav-received" role="tabpanel">
+                        <div class="message">
+                            <p>
+                                Hi boo,<br><br>I truly hope that you're having a great day. I remember you mentioning something about an audition today. Break a leg!<br><br>-your favorite grandma
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-sent" role="tabpanel">
+                        Hi friend,<br><br>I truly hope that you're having a great day. I remember you mentioning something about an audition today. Break a leg!<br><br>-your favorite grandma
+                    </div>
+                </div>
+
+
+                <!-- 
+                <ul class="nav nav-pill" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="message">
+                            <p>
+                                Hi boo,<br><br>I truly hope that you're having a great day. I remember you mentioning something about an audition today. Break a leg!<br><br>-your favorite grandma
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="message">
+                            <p>
+                                Hi boo,<br><br>I truly hope that you're having a great day. I remember you mentioning something about an audition today. Break a leg!<br><br>-your favorite grandma
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                </div> -->
+
+
+
+            </div>
+        </main>
+
+
+        <!-- <main class="flex">
+            <div class="content flex">
+                <div class="profile-info-container grid">
+
+                    <div class="profile-info flex">
+
+                        <div>
+                            <p class="field-title text-gray">first name:</p>
+                        </div>
+                        <p>Jacob</p>
+
+                        <div>
+                            <p class="field-title text-gray">last name:</p>
+                        </div>
+                        <p>Zinn</p>
+                        <div>
+                            <p class="field-title text-gray">email:</p>
+                        </div>
+                        <p>test@gmail.com</p>
+
+                    </div>
+
+                    <div class="profile-photo">
+                        <img src="../images/headshot.jpg" alt="profile photo">
+                    </div>
+                </div>
+            </div>
+        </main> -->
+
+        <footer>
+            <a href="https://github.com/Jacob-Zinn/aws.git"><img src="../images/GitHub_Logo.png"></a>
+        </footer>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

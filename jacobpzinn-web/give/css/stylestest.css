@@ -1,0 +1,261 @@
+:root {
+    --primary: #f2a488;
+    --primary-dark: #2D3142;
+    --primary-orange: #FF8B03;
+    --dark-blue: #4C87A6;
+    --dark-tan: #C7887F;
+    --dark-purple: #734a51;
+    --primary-gradient: linear-gradient(to bottom right, var(--primary-orange), #C7887F, var(--primary));
+    --gray: rgb(128, 128, 128);
+    --light-gray: rgb(169, 169, 169);
+    --lighter-gray: rgb(211, 211, 211);
+    --dark-gray: rgb(105, 105, 105);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--primary-dark);
+    font-family: "Lato", sans-serif;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.section {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: .8em;
+    padding: .2rem;
+    cursor: pointer;
+    height: 30%;
+    max-height: 10vw;
+}
+
+.hamburger .line {
+    max-width: 5vw;
+    display: block;
+    width: 1.2rem;
+    height: .12rem;
+    background-color: var(--primary);
+}
+
+.nav {
+    height: 80px;
+}
+
+.nav img {
+    border-radius: 100%;
+    max-width: 20vw;
+    max-height: 60%;
+    height: auto;
+}
+
+.nav .button {
+    height: auto;
+    margin-left: .8rem;
+}
+
+.nav .button p {
+    font-size: .8rem;
+    padding: 0 .6rem;
+    color: var(--primary);
+}
+
+.nav a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-section {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 1em;
+}
+
+#profileImg {
+    max-width: 10vw;
+}
+
+.navbar-brand {
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    object-fit: contain;
+    height: 100%;
+    padding: .5em;
+}
+
+#navbarNav .row {
+    padding: 0;
+    margin: 0;
+}
+
+.nav-link {
+    color: var(--primary);
+    text-decoration: none;
+    padding: 0;
+}
+
+.title h3 {
+    color: var(--dark-gray);
+}
+
+.button {
+    padding: .5em 1em;
+    border-radius: 2em;
+    border: solid 1px var(--primary);
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.button:hover {
+    background-image: var(--primary-gradient);
+    text-decoration: none;
+    background-image: var(--primary-gradient);
+    color: white;
+}
+
+.divider {
+    background-color: rgb(189, 189, 189);
+    height: 6px;
+    width: 100%;
+    z-index: 1;
+}
+
+.test {
+    border: red solid 1px;
+}
+
+#autoresizing {
+    display: block;
+    overflow: hidden;
+    resize: true;
+}
+
+.bar {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    resize: both;
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 1px solid var(--primary);
+}
+
+.bar:hover {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+
+.bar:focus-within {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+    outline: none;
+}
+
+.searchbar {
+    border: none;
+    width: 66vw;
+    font-size: 16px;
+    outline: none;
+}
+
+.textarea {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    resize: both;
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 1px solid var(--primary);
+}
+
+.textarea:hover {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+
+.textarea:focus-within {
+    box-shadow: 1px 1px 8px 1px #dcdcdc;
+    outline: none;
+}
+
+.textarea[contenteditable]:empty::before {
+    content: "I like the way you laugh";
+    color: gray;
+}
+
+footer {
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p {
+    margin: 0;
+    color: rgb(0, 0, 0, .3);
+}
+
+
+/* Mobile Styles */
+
+@media only screen and (max-width: 480px) {
+    .hamburger {
+        display: flex;
+    }
+    .hide {
+        display: none;
+    }
+}
+
+
+/* Tablet Styles */
+
+@media only screen and (min-width: 480px) and (max-width: 960px) {
+    .nav .button {
+        padding: .3rem .8rem;
+    }
+}
+
+
+/* Desktop Styles */
+
+@media only screen and (min-width: 961px) {}
