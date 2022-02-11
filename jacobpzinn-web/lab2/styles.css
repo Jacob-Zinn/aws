@@ -30,6 +30,12 @@
     color: inherit;
   }
 
+  .page-container {
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100vh;
+  }
+
   #navbarSupportedContent {
       justify-content: end;
   }
@@ -79,6 +85,24 @@
   .weatherWrapper img {
       max-width: 8em;
   }
+  
+footer {
+    background-color: darkgray;
+    color: white;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 40px;
+    width: 100%;
+}
 
-  .full-forecast {
-  }
+footer a {
+    display: flex;
+    align-items: center;
+}
+
+footer img {
+    width: 80px;
+}
