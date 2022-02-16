@@ -22,25 +22,28 @@ GET /random?maxLength=50
 GET /random?minLength=100&maxLength=140
 */
 
-function getQuote(element) {
+document.getElementById(`give-suggestion`).addEventListener(`click`, () => {
+  getQuote();
+});
+
+function getQuote() {
   const api_url = `https://api.quotable.io/random?tags=`;
 
   const messageElement = document.getElementById(`message`);
-  let url = api_url
-    .concat(element.innerText.replace(/[^a-z]/gi, ""));
-    // .concat(`|friendship`);
+  let url = api_url.concat(document.getElementById(`give-suggestion`).innerText.replace(/[^a-z]/gi, ""));
+  // .concat(`|friendship`);
 
-  modifyMessage(url, messageElement)
+  console.log(url);
+  modifyMessage(url, messageElement);
 }
 
 function modifyMessage(url, element) {
   getapi(url)
     .then((quote) => {
-      message.innerText = quote[`content`];
+      element.innerText = quote[`content`];
     })
     .catch((error) => {
-      const messageElement = document.getElementById(`message`);
-      modifyMessage(`https://api.quotable.io/random`, messageElement)
+      modifyMessage(`https://api.quotable.io/random`, element);
       console.log(`Error: ${error.message}`);
     });
 }
