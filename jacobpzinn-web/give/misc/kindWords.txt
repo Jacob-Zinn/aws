@@ -1,0 +1,14 @@
+[
+    {"word": "friendship"},
+    {"word": "your heart"},
+    {"word": "love"},
+    {"word": "positivity"},
+    {"word": "motivation"},
+    {"word": "encouragement"},
+    {"word": "knowledge"},
+    {"word": "acknowledgement"},
+    {"word": "forgiveness"},
+    {"word": "apology"},
+    {"word": "laughter"},
+    {"word": "compassion"}
+]
