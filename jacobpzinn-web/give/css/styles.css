@@ -230,8 +230,14 @@ main {
   margin: 0;
 }
 
+#give-suggestion-container {
+  position: relative;
+  inset: 0 0 0 0;
+  width: 100%;
+}
 
-#give-suggestion {
+.give-suggestion {
+  position: absolute;
   text-shadow: 2px 2px var(--lighter-gray) ;
   color:var(--primary);
   border-bottom: solid 1px var(--primary);
