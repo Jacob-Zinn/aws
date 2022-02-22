@@ -5,6 +5,7 @@
   --dark-blue: #4c87a6;
   --dark-tan: #c7887f;
   --dark-purple: #734a51;
+  --error: #ff0033;
   --primary-gradient: linear-gradient(
     to bottom right,
     var(--primary-orange),
@@ -79,6 +80,18 @@ a:hover {
 
 .text-white {
   color: white;
+}
+
+.text-error {
+  color: var(--error);
+}
+
+.text-color-primary {
+  color: var(--primary);
+}
+
+.text-color-primary-dark {
+  color: var(--primary-dark);
 }
 
 .text-gray {
@@ -199,6 +212,10 @@ a:hover {
   padding: 6px 18px;
   border-radius: 30px;
   border: 1px solid var(--primary);
+}
+
+.altborder {
+  border: 1px solid var(--error);
 }
 
 .textarea:hover {

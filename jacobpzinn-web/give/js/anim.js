@@ -7,7 +7,7 @@ async function startWordTranslationAnimation() {
     console.log(typeof wordArray);
     setInterval(() => {
       changeGiveSuggestion(wordArray);
-    }, 4500);
+    }, 4000);
   } catch (error) {
     console.log(error);
   }
