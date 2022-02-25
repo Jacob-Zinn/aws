@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>A List of Things To Do</h1>
+        <p v-show="activeTodos.length === 0">You are done with all your tasks! Good job!</p>
+
+        <form v-on:submit.prevent="addItem">
+            <input type="text" v-model="message">
+            <button type="submit">Add</button>
+        </form>
+
+        <div class="controls">
+            <button v-on:click="showAll()">Show All</button>
+            <button v-on:click="showActive()">Show Active</button>
+            <button v-on:click="showCompleted()">Show Completed</button>
+            <button v-on:click="deleteCompleted()">Delete Completed</button>
+        </div>
+
+        <ul>
+            <li v-for="item in filteredTodos" draggable="true" v-on:dragstart="dragItem(item)" v-on:dragover.prevent v-on:drop="dropItem(item)"> <input type="checkbox" v-model="item.completed" />
+                <label v-bind:class="{ completed: item.completed }">{{ item.text }}</label>
+                <button v-on:click="deleteItem(item)" class="delete">X</button>
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/script.js"></script>
+</body>
+
+</html>

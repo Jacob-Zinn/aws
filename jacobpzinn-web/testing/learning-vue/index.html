@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Lesson 1 -->
+    <!-- <div id="root"> -->
+    <!-- data binding using the v-model directive -->
+    <!-- <input type="text" v-model="message"> -->
+    <!-- template using mustache syntax -->
+    <!-- <p>The value of the input is: {{ message }}.</p>
+    </div> -->
+
+
+    <!-- Lesson 2 -->
+    <!-- <div id="root"> -->
+    <!-- <ul> -->
+    <!-- Loop through each name in names and render it. This will create a set of li elements -->
+    <!-- <li v-for="name in names">{{name}}</li> -->
+    <!-- </ul> -->
+
+    <!-- Let the user enter a new name and bind it to the newName property -->
+    <!-- <input v-on:key v-on:keyup.enter="addName" type="text" v-model="newName"> -->
+    <!-- Create an event handler for the click event -->
+    <!-- <button v-on:click="addName">Add Name</button> -->
+    <!-- </div> -->
+
+
+    <!-- Lesson 3 -->
+    <!-- <div id="root">
+        <button :title="title">Hover over me</button>
+
+        <button :class="{ 'blue': isLoading}" @click="toggleLoading">Click Me</button>
+
+      </div> -->
+
+
+    <!-- Lesson 4 -->
+    <div id="root">
+        <p> {{ message }}</p>
+        <p>I said, {{ screaming }}</p>
+    </div>
+
+    <div id="app">
+        <h1>Tasks</h1>
+        <ul>
+            <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+
+        <h1>Incomplete Tasks</h1>
+        <ul>
+            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
