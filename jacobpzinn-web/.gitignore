@@ -1,3 +1,5 @@
 # custom paths to ignore: JZ
 store/grocery-store-Jacob-Zinn
 testing
+node_modules
+museum-Jacob-Zinn
