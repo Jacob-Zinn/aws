@@ -1,0 +1,133 @@
+:root {
+  --primary: #f2a488;
+  --primary-dark: #2d3142;
+  --primary-orange: #ff8b03;
+  --dark-blue: #4c87a6;
+  --dark-tan: #c7887f;
+  --dark-purple: #734a51;
+  --error: #ff0033;
+  --primary-gradient: linear-gradient(
+    to bottom right,
+    var(--primary-orange),
+    #c7887f,
+    var(--primary)
+  );
+  --gray: rgb(128, 128, 128);
+  --light-gray: rgb(169, 169, 169);
+  --lighter-gray: rgb(211, 211, 211);
+  --dark-gray: rgb(105, 105, 105);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.text-white {
+  color: white;
+}
+
+.text-error {
+  color: var(--error);
+}
+
+.text-color-primary {
+  color: var(--primary);
+}
+
+.text-color-primary-dark {
+  color: var(--primary-dark);
+}
+
+.text-gray {
+  color: var(--gray);
+}
+
+.page {
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.content {
+  width: 55vw;
+  flex-direction: column;
+}
+
+@media (max-width: 40em) {
+  .content {
+    width: 80vw;
+  }
+}
+
+/* HOME PAGE */
+main {
+  justify-content: center;
+}
+
+.title {
+  padding: 0;
+  margin: 0;
+}
+
+#give-suggestion-container {
+  position: relative;
+  inset: 0 0 0 0;
+  width: 100%;
+}
+
+.give-suggestion {
+  position: absolute;
+  text-shadow: 2px 2px var(--lighter-gray);
+  color: var(--primary);
+  border-bottom: solid 1px var(--primary);
+  cursor: pointer;
+}
+
+.description {
+  color: var(--gray);
+}
+
+.input-title p {
+  font-weight: 200;
+  color: var(--light-gray);
+  margin-top: 0.4rem;
+}
+
+#previewBtn {
+  margin-top: 0.5rem;
+}
