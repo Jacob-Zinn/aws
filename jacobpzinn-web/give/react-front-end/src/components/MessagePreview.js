@@ -17,7 +17,7 @@ const MessagePreview = ({ message, to, from }) => {
     ctx.fillStyle = "#000000";
     ctx.beginPath();
 
-    ctx.arc(50, 100, 20 , 0, 2 * Math.PI);
+    ctx.arc(50, 40, 20 , 0, 2 * Math.PI);
     ctx.fill();
   };
 
@@ -50,9 +50,10 @@ const MessagePreview = ({ message, to, from }) => {
         <div className="message">{message}</div>
       </div>
 
+      <Canvas draw={drawCrap} isAnimated={false} id="canvas" />
+
       <div className="outro">{from}</div>
 
-      <Canvas draw={drawCrap} isAnimated={false} id="canvas" />
 
       <div className="bottom-trim">
         <p>&nbsp;</p>

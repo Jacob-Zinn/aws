@@ -46,6 +46,8 @@ export const StyledMessagePreview = styled.div`
 
   #canvas {
       position: relative;
+      overflow: visible;
+      height: 5rem;
       /* background-color: var(--primary); */
   }
 `;

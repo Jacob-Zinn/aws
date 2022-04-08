@@ -29,8 +29,8 @@ const useCanvas = (draw, isAnimated) => {
       // PRE DRAW
       context.save();
       resizeCanvas(canvas);
-      // const { width, height } = context.canvas;
-      // context.clearRect(0, 0, width, height);
+      const { width, height } = context.canvas;
+      context.clearRect(0, 0, width, height);
 
       // DRAWING
       if (isAnimated) {
