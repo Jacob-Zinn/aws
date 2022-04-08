@@ -1,12 +1,17 @@
-import { click } from "@testing-library/user-event/dist/click";
+import PropTypes from "prop-types";
 import { StyledButton } from "./styles/Button.styled";
 
-const Button = ({ clickFun }) => {
+const Button = ({ clickFun, cta}) => {
   return (
     <StyledButton id="previewBtn" className="button" onClick={clickFun}>
-      <p>preview message</p>
+      <p>{cta}</p>
     </StyledButton>
   );
+};
+
+
+Button.propTypes = {
+  clickFun: PropTypes.func.isRequired
 };
 
 export default Button;

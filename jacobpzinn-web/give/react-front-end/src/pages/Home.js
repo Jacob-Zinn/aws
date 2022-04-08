@@ -3,76 +3,123 @@ import TextBar from "../components/TextBar";
 import Button from "../components/Button";
 import { GiveSugg } from "../components/styles/GiveSugg.styled";
 import Utils from "../utils/Quote.ts";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
+import MessagePreview from "../components/MessagePreview";
 
 const Home = () => {
   const [sugg1, setSugg1] = useState("more...");
   const [sugg2, setSugg2] = useState("");
   const [showSugg, setShowSugg] = useState(true);
   const [suggText, setSuggText] = useState("");
-  const [wordArray, setWordArray] = useState([]);
+  const [wordArray, setWordArray] = useState();
+  const [userInput, setUserInput] = useState({});
+  const [enablePreview, setEnablePreview] = useState(false);
+  const [invokePreview, setInvokePreview] = useState(false);
 
-  let timer = null;
-
-  useEffect(() => {
-    if (timer === null) {
-      startWordTranslationAnimation();
-    }
-    return () => {
-      clearInterval(timer);
-    };
+  useEffect(function initAnim() {
+    startWordTranslationAnimation();
   }, []);
+
+  useEffect(
+    function appRunTimer() {
+      // Creates a new timer when mount the component..
+      const timer = setInterval(() => {
+        changeSuggestion();
+      }, 4000);
+
+      // Stops the old timer when umount the component.
+      return function stopTimer() {
+        clearInterval(timer);
+      };
+    },
+    [wordArray]
+  );
+
+  useEffect(
+    function initAnim() {
+      const size = Object.keys(userInput)?.length;
+      if (size === 3) {
+        setEnablePreview(true);
+      } else {
+        setEnablePreview(false);
+      }
+    },
+    [userInput]
+  );
 
   const startWordTranslationAnimation = async function () {
     try {
-      const wordArray = await getNewSuggestion();
-      timer = setInterval(() => {
-        console.log("INTERVAL");
-        changeGiveSuggestion(wordArray);
-      }, 4000);
+      const tmp = await getSuggestions();
+      setWordArray(tmp);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const changeGiveSuggestion = function () {
-    if (showSugg) {
-      setSugg2(
-        wordArray[Utils.getRandomInt(Object.keys(wordArray).length)].word ?? 'more'
-      );
-    } else {
-      setSugg1(
-        wordArray[Utils.getRandomInt(Object.keys(wordArray).length)].word
-      );
+  const changeSuggestion = function () {
+    if (!wordArray) {
+      startWordTranslationAnimation();
+      return;
     }
-    setTimeout(changeGiveSuggestion, 4000)
+    let rand = Utils.getRandomInt(wordArray.length);
+    if (showSugg) {
+      setSugg2(wordArray[rand] ?? "more");
+    } else {
+      setSugg1(wordArray[rand] ?? "more");
+    }
+
     setShowSugg(!showSugg);
   };
 
-  const getNewSuggestion = async function () {
+  const getSuggestions = async function () {
     const url = `/kindWords.txt`;
     return await fetch(url)
       .then((response) => {
-        return response.json();
+        return response.text();
       })
       .then((json) => {
-        return json; // array
+        return JSON.parse(json).map((obj) => obj.word); // array
       });
   };
 
   const insertQuote = function (matchWord) {
     return function () {
       console.log(`insert quote with word: ${matchWord}`);
+      Utils.getQuote(matchWord).then((newQuote) => {
+        setSuggText(newQuote);
+      });
     };
-    // utils.getQuote(matchWord).then((newQuote) => {suggText.value = newQuote});
   };
 
-  const previewMessageFun = function () {
-    console.log("previewing message");
-  };
+  function addInput(type, input) {
+    let newObj = { ...userInput };
+    newObj[type] = input;
+    setUserInput(newObj);
+  }
+
+  function testInput() {
+    console.log('testing')
+    setEnablePreview(true);
+    setUserInput({
+      to: "Jacob Zinn",
+      from: "Your favorite person",
+      message:
+        "I was just thinking about you today. You're the best. Have fun blowing out the candle!",
+    });
+    setInvokePreview(true);
+  }
 
   return (
     <main className="flex">
       <div className="content flex">
+      <Button
+            cta="TEST DELETE"
+            clickFun={()=> {
+              return testInput()
+            }}
+          >
+            <h1>DELETE</h1>
+          </Button>
         <div className="flex title">
           <h1
             onClick={() => {
@@ -107,28 +154,52 @@ const Home = () => {
           <TextBar
             insertText={suggText}
             hintTextProp="i.e. I like the way you laugh"
+            returnType="message"
+            returnInput={addInput}
           />
         </div>
         <div>
           <div className="input-title">
             <p>to:</p>
           </div>
-          <TextBar hintTextProp="i.e. Tagg the man" />
+          <TextBar
+            hintTextProp="i.e. Tagg the man"
+            returnType="to"
+            returnInput={addInput}
+          />
         </div>
         <div>
           <div className="input-title">
             <p>from:</p>
           </div>
-          <TextBar hintTextProp="i.e. Jacob" />
+          <TextBar
+            hintTextProp="i.e. Jacob"
+            returnType="from"
+            returnInput={addInput}
+          />
         </div>
 
+        {!enablePreview && invokePreview && <div>"Testing"</div>}
+
         <div>
-          <Button id="previewBtn" clickFun={previewMessageFun}>
+          <Button
+            id="previewBtn"
+            cta="preview message"
+            clickFun={() => {
+              setInvokePreview(true);
+            }}
+          >
             <p>preview message</p>
           </Button>
         </div>
 
-        <div id="messagePreview"></div>
+        {enablePreview && invokePreview && (
+          <MessagePreview
+            message={userInput["message"]}
+            to={userInput["to"]}
+            from={userInput["from"]}
+          />
+        )}
       </div>
     </main>
   );

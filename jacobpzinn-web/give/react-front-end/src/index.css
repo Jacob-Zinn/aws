@@ -31,11 +31,12 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--primary-dark)
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--primary-dark);
 }
 
 a:hover {
@@ -46,6 +47,11 @@ a:hover {
 .flex {
   display: flex;
   gap: var(--gap, 1rem);
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-wrap {
