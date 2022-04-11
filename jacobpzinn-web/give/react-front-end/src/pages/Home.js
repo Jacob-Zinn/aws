@@ -4,11 +4,10 @@ import Button from "../components/Button";
 import { GiveSugg } from "../components/styles/GiveSugg.styled";
 import Utils from "../utils/Quote.ts";
 import MessagePreview from "../components/MessagePreview";
-import { FaShareAlt, FaClipboard, FaDumpsterFire } from "react-icons/fa";
+import { FaShareAlt, FaClipboard } from "react-icons/fa";
 import { StyledButton } from "../components/styles/Button.styled";
 import axios from "axios";
 import giftSvg from "../assets/gift.svg";
-import { CSSTransition } from "react-transition-group";
 
 const Home = () => {
   const [sugg, setSugg] = useState("more...");
@@ -119,7 +118,7 @@ const Home = () => {
         isOutbound: true,
       });
       setInvokePreview(false);
-      setShareLink("testing this sucka");
+      setShareLink(`http://localhost:3000/gift/${response.data._id}`);
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -228,13 +227,14 @@ const Home = () => {
             id="previewBtn"
             cta="preview message"
             clickFun={() => {
+              setShareLink(false)
               setInvokePreview(true);
             }}
           ></Button>
         </div>
 
         {enablePreview && invokePreview && (
-          <MessagePreview messageInput={userInput} />
+          <MessagePreview newWidth={'40%'} messageInput={userInput} />
         )}
 
         {enablePreview && invokePreview && (
@@ -260,6 +260,7 @@ const Home = () => {
         )}
 
         {shareLink && (
+          <>
           <div className="flex" style={{ gap: "0" }}>
             <a href={shareLink}>
               <img
@@ -269,23 +270,29 @@ const Home = () => {
             </a>
 
             <div className="flex-column" style={{ justifyContent: "end" }}>
+              <div className="flex">
+              <div className="flex-column" style={{ justifyContent: "end"}}>
+                <p style={{marginBottom: ".7rem", textDecoration: "underline",  backgroundColor: "lightgray", borderRadius: ".3rem", padding: ".3rem"}}> {shareLink}</p>
+                </div>
               <div
                 className="share-link"
                 onClick={copyToClipboard}
                 style={{ cursor: "pointer" }}
               >
                 <div className="clipboard-container flex">
-                  <p>{shareLink}</p>
                   <div
                     className="flex-column"
-                    style={{ justifyContent: "center" }}
+                    style={{ justifyContent: "center", padding: ".3rem" }}
                   >
                     <FaClipboard style={{ color: "var(--primary-dark" }} />
                   </div>
                 </div>
               </div>
+              </div>
             </div>
           </div>
+          {/* <p style={{marginLeft: "1.2rem", marginTop: "-1rem"}}>^^Share your message with this link^^</p> */}
+          </>
         )}
       </div>
     </main>

@@ -46,7 +46,7 @@ export const StyledMessagePreview = styled.div`
   }
 
   .message {
-    padding:  0 1em;
+    padding:  2rem 1rem 0 1rem;
     border: 0;
     margin: 0;
   }
@@ -64,7 +64,7 @@ export const StyledMessagePreview = styled.div`
   #canvas {
       position: relative;
       overflow: visible;
-      /* height: 2.2rem; */
+      height: 2.2rem;
       /* background-color: var(--primary-dark); */
   }
 `;

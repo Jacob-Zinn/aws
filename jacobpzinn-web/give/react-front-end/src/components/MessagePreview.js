@@ -2,7 +2,7 @@ import { StyledMessagePreview } from "./styles/MessagePreview.styled";
 import giveLogo from "../assets/give-sm.png";
 import Canvas from "./Canvas";
 
-const MessagePreview = ({ messageInput }) => {
+const MessagePreview = ({ messageInput, newWidth }) => {
   const drawAnim = (ctx, frameCount) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.fillStyle = "#000000";
@@ -30,11 +30,23 @@ const MessagePreview = ({ messageInput }) => {
     ctx.stroke();
   };
 
+  const drawCrap = (ctx) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.beginPath();
+
+    ctx.strokeStyle = "#f2a488";
+    let width = ctx.canvas.width
+    let height = ctx.canvas.height
+    ctx.moveTo(0, ctx.canvas.height/2);
+    ctx.lineTo(width, height/2);
+    ctx.stroke();
+  };
+
   return (
-    <StyledMessagePreview>
+    <StyledMessagePreview style={{width: newWidth}}>
       <div className="intro">
         <div className="flex-column center">
-          <p>{messageInput.to}</p>
+          <p>gifted by:&nbsp;&nbsp;&nbsp;<strong>{messageInput.to}</strong></p>
         </div>
 
         <div className="flex-column center">
@@ -48,7 +60,8 @@ const MessagePreview = ({ messageInput }) => {
         <p>{messageInput.message}</p>
       </div>
 
-      {/* <Canvas draw={draw} height="30" width="100%" isAnimated={false} id="canvas" /> */}
+        
+      <Canvas draw={drawCrap} isAnimated={false} id="canvas" />
 
       <div className="outro">
        <p>
