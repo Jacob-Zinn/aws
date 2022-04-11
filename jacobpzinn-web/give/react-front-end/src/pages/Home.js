@@ -3,18 +3,23 @@ import TextBar from "../components/TextBar";
 import Button from "../components/Button";
 import { GiveSugg } from "../components/styles/GiveSugg.styled";
 import Utils from "../utils/Quote.ts";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 import MessagePreview from "../components/MessagePreview";
+import { FaShareAlt, FaClipboard, FaDumpsterFire } from "react-icons/fa";
+import { StyledButton } from "../components/styles/Button.styled";
+import axios from "axios";
+import giftSvg from "../assets/gift.svg";
+import { CSSTransition } from "react-transition-group";
 
 const Home = () => {
-  const [sugg1, setSugg1] = useState("more...");
-  const [sugg2, setSugg2] = useState("");
-  const [showSugg, setShowSugg] = useState(true);
+  const [sugg, setSugg] = useState("more...");
+  // const [sugg2, setSugg2] = useState("");
+  const [showSugg, setShowSugg] = useState(false);
   const [suggText, setSuggText] = useState("");
   const [wordArray, setWordArray] = useState();
   const [userInput, setUserInput] = useState({});
   const [enablePreview, setEnablePreview] = useState(false);
   const [invokePreview, setInvokePreview] = useState(false);
+  const [shareLink, setShareLink] = useState("");
 
   useEffect(function initAnim() {
     startWordTranslationAnimation();
@@ -35,6 +40,13 @@ const Home = () => {
     [wordArray]
   );
 
+  // useEffect(
+  //   function updateShowSuggestion() {
+  //     setShowSugg(!showSugg);
+  //   },
+  //   [sugg1, sugg2]
+  // );
+
   useEffect(
     function initAnim() {
       const size = Object.keys(userInput)?.length;
@@ -47,6 +59,15 @@ const Home = () => {
     [userInput]
   );
 
+  // const shareLinkTransition = useTransition(enablePreview, invokePreview, {
+  //   from: { opacity: 0 },
+  //   enter: { opacity: 1 },
+  //   leave: { opacity: 0 },
+  //   delay: 200,
+  //   config: config.gentle,
+  //   // onRest: () => setItems([]),
+  // });
+
   const startWordTranslationAnimation = async function () {
     try {
       const tmp = await getSuggestions();
@@ -54,21 +75,6 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const changeSuggestion = function () {
-    if (!wordArray) {
-      startWordTranslationAnimation();
-      return;
-    }
-    let rand = Utils.getRandomInt(wordArray.length);
-    if (showSugg) {
-      setSugg2(wordArray[rand] ?? "more");
-    } else {
-      setSugg1(wordArray[rand] ?? "more");
-    }
-
-    setShowSugg(!showSugg);
   };
 
   const getSuggestions = async function () {
@@ -82,6 +88,21 @@ const Home = () => {
       });
   };
 
+  const changeSuggestion = function () {
+    if (!wordArray) {
+      startWordTranslationAnimation();
+      return;
+    }
+    let rand = Utils.getRandomInt(wordArray.length);
+    setSugg(wordArray[rand] ?? "more");
+    // if (showSugg) {
+    //   setSugg2(wordArray[rand] ?? "more");
+
+    // } else {
+    //   setSugg(wordArray[rand] ?? "more");
+    // }
+  };
+
   const insertQuote = function (matchWord) {
     return function () {
       console.log(`insert quote with word: ${matchWord}`);
@@ -91,6 +112,20 @@ const Home = () => {
     };
   };
 
+  async function uploadMessage() {
+    try {
+      let response = await axios.post("/api/messages", {
+        ...userInput,
+        isOutbound: true,
+      });
+      setInvokePreview(false);
+      setShareLink("testing this sucka");
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   function addInput(type, input) {
     let newObj = { ...userInput };
     newObj[type] = input;
@@ -98,7 +133,7 @@ const Home = () => {
   }
 
   function testInput() {
-    console.log('testing')
+    console.log("testing");
     setEnablePreview(true);
     setUserInput({
       to: "Jacob Zinn",
@@ -109,36 +144,43 @@ const Home = () => {
     setInvokePreview(true);
   }
 
+  function copyToClipboard(e) {
+    navigator.clipboard.writeText(shareLink);
+    // textAreaRef.current.select();
+    // navigator('copy');
+    // This is just personal preference.
+    // I prefer to not show the whole text area selected.
+    // e.target.focus();
+    // setCopySuccess('Copied!');
+  }
+
   return (
     <main className="flex">
       <div className="content flex">
-      <Button
-            cta="TEST DELETE"
-            clickFun={()=> {
-              return testInput()
-            }}
-          >
-            <h1>DELETE</h1>
-          </Button>
+        <Button
+          cta="TEST DELETE"
+          clickFun={() => {
+            return testInput();
+          }}
+        >
+          <h1>DELETE</h1>
+        </Button>
         <div className="flex title">
-          <h1
-            onClick={() => {
-              setShowSugg(!showSugg);
-            }}
-          >
-            give
-          </h1>
+          <h1>give</h1>
           <div id="give-suggestion-container">
-            {showSugg && (
-              <GiveSugg isEntry={showSugg} onClick={insertQuote(sugg1)}>
-                {sugg1}
-              </GiveSugg>
-            )}
-            {showSugg === false && (
-              <GiveSugg isEntry={!showSugg} onClick={insertQuote(sugg2)}>
-                {sugg2}
-              </GiveSugg>
-            )}
+            <GiveSugg
+              // className={showSugg ? "fullOpac" : "noOpac"}
+              onClick={insertQuote(sugg)}
+            >
+              {sugg}
+            </GiveSugg>
+            {/* <GiveSugg
+              isEntry={showSugg}
+              className={showSugg ? "noOpac" : "fullOpac"}
+              onClick={insertQuote(sugg2)}
+            >
+              {sugg2}
+            </GiveSugg> */}
           </div>
         </div>
         <p className="description">
@@ -188,17 +230,62 @@ const Home = () => {
             clickFun={() => {
               setInvokePreview(true);
             }}
-          >
-            <p>preview message</p>
-          </Button>
+          ></Button>
         </div>
 
         {enablePreview && invokePreview && (
-          <MessagePreview
-            message={userInput["message"]}
-            to={userInput["to"]}
-            from={userInput["from"]}
-          />
+          <MessagePreview messageInput={userInput} />
+        )}
+
+        {enablePreview && invokePreview && (
+          <div>
+            <StyledButton
+              onClick={() => {
+                uploadMessage();
+              }}
+            >
+              <div className="flex">
+                <div
+                  className="flex-column"
+                  style={{ justifyContent: "center" }}
+                >
+                  <FaShareAlt
+                    style={{ color: "var(--primary)", cursor: "pointer" }}
+                  />
+                </div>
+                <p>share</p>
+              </div>
+            </StyledButton>
+          </div>
+        )}
+
+        {shareLink && (
+          <div className="flex" style={{ gap: "0" }}>
+            <a href={shareLink}>
+              <img
+                src={giftSvg}
+                style={{ objectFit: "cover", width: "5rem" }}
+              />
+            </a>
+
+            <div className="flex-column" style={{ justifyContent: "end" }}>
+              <div
+                className="share-link"
+                onClick={copyToClipboard}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="clipboard-container flex">
+                  <p>{shareLink}</p>
+                  <div
+                    className="flex-column"
+                    style={{ justifyContent: "center" }}
+                  >
+                    <FaClipboard style={{ color: "var(--primary-dark" }} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </main>

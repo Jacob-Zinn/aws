@@ -137,3 +137,31 @@ main {
 #previewBtn {
   margin-top: 0.5rem;
 }
+
+.share-link {
+  border-radius: 5rem;
+  border: var(--primary-dark) solid 1px;
+  width: fit-content;
+  margin-bottom: .7rem;
+
+}
+
+.share-link p {
+  color: var(--primary-dark);
+  margin: 0;
+}
+
+.clipboard-container {
+  padding: .1rem .3rem;
+}
+
+.noOpac {
+  transition: opacity ease 900ms;
+  opacity: 0%;
+}
+
+.fullOpac {
+  transition: opacity ease 900ms;
+  transition-delay: 900ms;
+  opacity: 100%;
+}

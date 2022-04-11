@@ -1,5 +1,4 @@
-import styled, { css, keyframes } from "styled-components";
-import { fadeIn, fadeOutDown } from "react-animations";
+import styled from "styled-components";
 
 export const GiveSugg = styled.h1`
   position: absolute;
@@ -7,10 +6,67 @@ export const GiveSugg = styled.h1`
   color: var(--primary);
   border-bottom: solid 1px var(--primary);
   cursor: pointer;
-  animation: ${({ isEntry }) =>
+  
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+
+  /* transition: transform ease 1s; */
+  /* 
+  ${({ isEntry }) =>
     isEntry
-      ? css`900ms ${keyframes `${fadeIn}`} 1`
-      : css`900ms ${keyframes `${fadeOutDown}`} 1`};
+      ? ` animation: fadeIn 900ms ease; `
+      : `animation: fadeOut 1800ms ease; background-color: red;
+  `} */
+/* 
+  ${({ isEntry }) => isEntry && ` animation: fadeOutIn 1800ms ease; `} */
+/* 
+  @keyframes fadeOutIn {
+    0% {
+      opacity: 100%;
+    }
+
+    50% {
+      opacity: 0%;
+    }
+
+    100% {
+      opacity: 100%;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 100%;
+      top: 0;
+    }
+
+    25% {
+      opacity: 0%;
+      top: 10rem;
+    }
+
+    100% {
+      opacity: 0%;
+      top: 0;
+    }
+  } */
 `;
 
 /* export const StyledTitle = styled.h1` ${({anim}) =>  css`animation:  2s ${keyframes `${anim}`} 1`}`;  */
+// animation: 900ms ${keyframes `${fadeIn}`} 1;

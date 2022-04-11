@@ -5,8 +5,9 @@ export const StyledMessagePreview = styled.div`
   border: var(--primary) solid 1px;
   border-radius: 1rem;
   flex-direction: column;
-  gap: var(--gap, 1rem);
+  gap: var(--gap, .5rem);
   margin-top: 2.3rem;
+  width: 100%;
 
   .intro {
     display: flex;
@@ -21,6 +22,16 @@ export const StyledMessagePreview = styled.div`
     margin: 0;
     margin-left: 1rem;
   }
+
+  .outro {
+    padding: 0 1rem;
+    margin: 0;
+  }
+
+  .outro p { 
+    padding: 0;
+    margin: 0;
+  }
   .center {
     justify-content: center;
   }
@@ -34,8 +45,14 @@ export const StyledMessagePreview = styled.div`
     filter: brightness(0) invert(1);
   }
 
-  .containing {
-    padding: 1em;
+  .message {
+    padding:  0 1em;
+    border: 0;
+    margin: 0;
+  }
+
+  .message p {
+    border: 0;
   }
 
   .bottom-trim {
@@ -47,7 +64,7 @@ export const StyledMessagePreview = styled.div`
   #canvas {
       position: relative;
       overflow: visible;
-      height: 5rem;
-      /* background-color: var(--primary); */
+      /* height: 2.2rem; */
+      /* background-color: var(--primary-dark); */
   }
 `;
