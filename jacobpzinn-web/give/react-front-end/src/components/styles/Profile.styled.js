@@ -55,6 +55,4 @@ export const StyledProfile = styled.main`
 
   }
 
-  .grid-item {
-  }
 `;

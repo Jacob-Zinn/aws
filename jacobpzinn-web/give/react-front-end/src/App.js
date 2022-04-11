@@ -16,7 +16,6 @@ function App() {
     setUser(user)
   }
 
-
   return (
     <div className="page flex">
       <Router>
@@ -25,7 +24,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/index.html" element={<Home />} />
           <Route path="/inspiration" element={<Inspiration />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile authUser={user}/>} />
           <Route path="/login" element={<Login userLogin={login}/>} />
           <Route path="gift/:id" element={<Gift />} />
         </Routes>

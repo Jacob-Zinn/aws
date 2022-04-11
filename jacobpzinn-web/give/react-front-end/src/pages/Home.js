@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import TextBar from "../components/TextBar";
-import Button from "../components/Button";
 import { GiveSugg } from "../components/styles/GiveSugg.styled";
 import Utils from "../utils/Quote.ts";
 import MessagePreview from "../components/MessagePreview";
@@ -156,14 +155,10 @@ const Home = () => {
   return (
     <main className="flex">
       <div className="content flex">
-        <Button
-          cta="TEST DELETE"
-          clickFun={() => {
-            return testInput();
-          }}
-        >
-          <h1>DELETE</h1>
-        </Button>
+        <StyledButton onClick={testInput}>
+          <p>TEST DELETE</p>
+        </StyledButton>
+
         <div className="flex title">
           <h1>give</h1>
           <div id="give-suggestion-container">
@@ -223,18 +218,18 @@ const Home = () => {
         {!enablePreview && invokePreview && <div>"Testing"</div>}
 
         <div>
-          <Button
-            id="previewBtn"
-            cta="preview message"
-            clickFun={() => {
-              setShareLink(false)
+          <StyledButton
+            onClick={() => {
+              setShareLink(false);
               setInvokePreview(true);
             }}
-          ></Button>
+          >
+            <p>preview message</p>
+          </StyledButton>
         </div>
 
         {enablePreview && invokePreview && (
-          <MessagePreview newWidth={'40%'} messageInput={userInput} />
+          <MessagePreview newWidth={"40%"} messageInput={userInput} />
         )}
 
         {enablePreview && invokePreview && (
@@ -261,37 +256,51 @@ const Home = () => {
 
         {shareLink && (
           <>
-          <div className="flex" style={{ gap: "0" }}>
-            <a href={shareLink}>
-              <img
-                src={giftSvg}
-                style={{ objectFit: "cover", width: "5rem" }}
-              />
-            </a>
+            <div className="flex" style={{ gap: "0" }}>
+              <a href={shareLink}>
+                <img
+                  src={giftSvg}
+                  style={{ objectFit: "cover", width: "5rem" }}
+                />
+              </a>
 
-            <div className="flex-column" style={{ justifyContent: "end" }}>
-              <div className="flex">
-              <div className="flex-column" style={{ justifyContent: "end"}}>
-                <p style={{marginBottom: ".7rem", textDecoration: "underline",  backgroundColor: "lightgray", borderRadius: ".3rem", padding: ".3rem"}}> {shareLink}</p>
-                </div>
-              <div
-                className="share-link"
-                onClick={copyToClipboard}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="clipboard-container flex">
+              <div className="flex-column" style={{ justifyContent: "end" }}>
+                <div className="flex">
                   <div
                     className="flex-column"
-                    style={{ justifyContent: "center", padding: ".3rem" }}
+                    style={{ justifyContent: "end" }}
                   >
-                    <FaClipboard style={{ color: "var(--primary-dark" }} />
+                    <p
+                      style={{
+                        marginBottom: ".7rem",
+                        textDecoration: "underline",
+                        backgroundColor: "lightgray",
+                        borderRadius: ".3rem",
+                        padding: ".3rem",
+                      }}
+                    >
+                      {" "}
+                      {shareLink}
+                    </p>
+                  </div>
+                  <div
+                    className="share-link"
+                    onClick={copyToClipboard}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div className="clipboard-container flex">
+                      <div
+                        className="flex-column"
+                        style={{ justifyContent: "center", padding: ".3rem" }}
+                      >
+                        <FaClipboard style={{ color: "var(--primary-dark" }} />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              </div>
             </div>
-          </div>
-          {/* <p style={{marginLeft: "1.2rem", marginTop: "-1rem"}}>^^Share your message with this link^^</p> */}
+            {/* <p style={{marginLeft: "1.2rem", marginTop: "-1rem"}}>^^Share your message with this link^^</p> */}
           </>
         )}
       </div>

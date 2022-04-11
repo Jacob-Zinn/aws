@@ -58,6 +58,10 @@ a:hover {
   justify-content: center;
 }
 
+.flex-align-center {
+  align-items: center;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -176,6 +180,8 @@ main {
   border: solid 1px var(--primary);
   color: var(--primary);
   text-decoration: none;
+  display: inline-block;
+
   background-color: transparent;
 }
 

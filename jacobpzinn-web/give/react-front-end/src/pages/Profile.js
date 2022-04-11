@@ -1,17 +1,15 @@
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import { StyledProfile } from "../components/styles/Profile.styled";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MessagePreview from "../components/MessagePreview";
 import giveLogo from "../assets/give-sm.png";
+import { StyledButton } from "../components/styles/Button.styled";
 
-
-const Profile = () => {
+const Profile = ({ authUser }) => {
   const [inboundMessages, setInboundMessages] = useState([]);
   const [outboundMessages, setOutboundMessages] = useState([]);
-  const [inboundRows, setInboundRows] = useState([]);
-  const [outboundRows, setOutboundRows] = useState([]);
   const [profileImg, setImg] = useState();
 
   useEffect(function initAnim() {
@@ -23,19 +21,6 @@ const Profile = () => {
   useEffect(function initProfilePic() {
     // getProfilePic();
   }, []);
-
-  useEffect(
-    function filterOutboundMessages() {
-      let rows = [];
-      outboundMessages.forEach((message) => {
-        // note: we are adding a key prop here to allow react to uniquely identify each
-        // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
-        rows.push(<MessagePreview key={message._id} messageInput={message} />);
-      });
-      setOutboundRows(rows);
-    },
-    [outboundMessages]
-  );
 
   const getProfilePic = async () => {
     const imageUrl = "/api/images/headshot.jpg";
@@ -61,7 +46,6 @@ const Profile = () => {
 
   return (
     <StyledProfile>
-
       <div className="content flex">
         <div className="profile-info-container flex">
           <div className="profile-photo-container flex">
@@ -77,50 +61,80 @@ const Profile = () => {
           <div className="profile-info flex">
             <div className="flex flex-wrap">
               <div className="flex">
-                <p className="field-title text-gray">first name:</p>
-                <p>Jacob</p>
+                <p className="field-title text-gray">first:</p>
+                <p>{authUser.firstName ?? "N/A"}</p>
               </div>
 
               <div className="flex">
-                <p className="field-title text-gray">last name:</p>
-                <p>Zinn</p>
+                <p className="field-title text-gray">last:</p>
+                <p>{authUser.lastName ?? "N/A"}</p>
               </div>
 
               <div className="flex">
-                <p className="field-title text-gray">email:</p>
-                <p>test@gmail.com</p>
+                <p className="field-title text-gray">username:</p>
+                <p>{authUser.username ?? "N/A"}</p>
               </div>
             </div>
           </div>
         </div>
-
 
         <Tabs
           defaultActiveKey="delivered"
           id="uncontrolled-tab-example"
           className="mb-3"
         >
-          <Tab  eventKey="delivered" title="delivered">
-          <div className='grid-container'>
-              {outboundMessages.map(function (message) {
-                return (
-                  <MessagePreview  className="grid-item" messageInput={message} key={message._id} />
-                );
-              })}
-            </div>
+          <Tab eventKey="delivered" title="delivered">
+            {!authUser.username && (
+              <div className="flex flex-justify-center">
+                <a href="./login">
+                  <StyledButton>
+                    <p style={{ marginBottom: 0 }}>login</p>
+                  </StyledButton>
+                </a>
+              </div>
+            )}
+
+            {authUser.username && (
+              <div className="grid-container">
+                {outboundMessages.map(function (message) {
+                  return (
+                    <MessagePreview
+                      className="grid-item"
+                      messageInput={message}
+                      key={message._id}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </Tab>
           <Tab eventKey="received" title="received">
-            <div className='grid-container'>
-              {inboundMessages.map(function (message) {
-                return (
-                  <MessagePreview  className="grid-item" messageInput={message} key={message._id} />
-                );
-              })}
-            </div>
+            {!authUser.username && (
+              <div className="flex flex-justify-center">
+                <a href="./login">
+                  <StyledButton>
+                    <p style={{ marginBottom: 0 }}>login</p>
+                  </StyledButton>
+                </a>
+              </div>
+            )}
+
+            {authUser.username && (
+              <div className="grid-container">
+                {inboundMessages.map(function (message) {
+                  return (
+                    <MessagePreview
+                      className="grid-item"
+                      messageInput={message}
+                      key={message._id}
+                    />
+                  );
+                })}
+              </div>
+            )}
           </Tab>
         </Tabs>
-
-</div>
+      </div>
     </StyledProfile>
   );
 };
