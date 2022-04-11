@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <div>
-        <a href="#">
+        <a href="/">
           <img className="logo" src={giveLogo} alt="give logo" />
         </a>
       </div>

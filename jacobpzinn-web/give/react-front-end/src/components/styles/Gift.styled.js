@@ -1,20 +1,19 @@
 import styled, { css, keyframes } from "styled-components";
 
 export const StyledGift = styled.div`
-  /* display: flex;
+   display: flex;
     flex-direction: column;
-    height: 100%;
-
+    justify-content: center;
     img {
         cursor: pointer;
-    } */
+        margin-bottom: 10vh;
+    } 
 
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  animation: gradient 15s ease 10;
-  /* animation: happiness 4s ease infinite; */
-  height: 100vh;
-  background-color: red;
+  animation: gradient 15s ease 9;
+  height: 75vh;
+
 
   @keyframes gradient {
     0% {
@@ -28,33 +27,26 @@ export const StyledGift = styled.div`
     }
   }
 
-  @keyframes happiness {
+  .slideOut {
+    animation: slideOut 1200ms ease-in 1;
+  }
+
+  @keyframes slideOut {
     0% {
       transform: translateX(0%);
     }
-    50% {
-      transform: translateX(25%);
-    }
     100% {
-      transform: translateX(0%);
+      transform: translateX(120vw);
     }
   }
-
 
   img {
-
-
-    animation: shake 2500ms ease-in-out 1500ms 7;
-
-
-
-
-  .regular {
-    background-color: "red";
-  }
+    animation: shake 2500ms ease-in-out 900ms 9;
+    .regular {
+      background-color: "red";
+    }
 
     .shake-anim {
-
       @keyframes shake {
         0% {
           transform: rotate(0deg);

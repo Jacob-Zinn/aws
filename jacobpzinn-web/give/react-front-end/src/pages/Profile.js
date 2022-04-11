@@ -4,6 +4,8 @@ import { StyledProfile } from "../components/styles/Profile.styled";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MessagePreview from "../components/MessagePreview";
+import giveLogo from "../assets/give-sm.png";
+
 
 const Profile = () => {
   const [inboundMessages, setInboundMessages] = useState([]);
@@ -28,7 +30,6 @@ const Profile = () => {
       outboundMessages.forEach((message) => {
         // note: we are adding a key prop here to allow react to uniquely identify each
         // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
-        console.log(message);
         rows.push(<MessagePreview key={message._id} messageInput={message} />);
       });
       setOutboundRows(rows);
@@ -58,17 +59,8 @@ const Profile = () => {
     }
   }
 
-  function testing() {}
-
   return (
     <StyledProfile>
-      <h1
-        onClick={() => {
-          testing();
-        }}
-      >
-        testing
-      </h1>
 
       <div className="content flex">
         <div className="profile-info-container flex">
@@ -76,7 +68,7 @@ const Profile = () => {
             <div>
               <img
                 className="profile-photo"
-                src={profileImg}
+                src={giveLogo} // src={profileImg}
                 alt="profile photo"
               />
             </div>

@@ -31,7 +31,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--primary-dark)
+  color: var(--primary-dark);
 }
 
 a {
@@ -52,6 +52,10 @@ a:hover {
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.flex-justify-center {
+  justify-content: center;
 }
 
 .flex-wrap {
@@ -142,8 +146,7 @@ main {
   border-radius: 5rem;
   border: var(--primary-dark) solid 1px;
   width: fit-content;
-  margin-bottom: .7rem;
-
+  margin-bottom: 0.7rem;
 }
 
 .share-link p {
@@ -152,7 +155,7 @@ main {
 }
 
 .clipboard-container {
-  padding: .1rem .3rem;
+  padding: 0.1rem 0.3rem;
 }
 
 .noOpac {
@@ -164,4 +167,30 @@ main {
   transition: opacity ease 900ms;
   transition-delay: 900ms;
   opacity: 100%;
+}
+
+/* BUTTON */
+.button {
+  padding: 0 1rem;
+  border-radius: 2em;
+  border: solid 1px var(--primary);
+  color: var(--primary);
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.button:hover {
+  background-image: var(--primary-gradient);
+  text-decoration: none;
+  background-image: var(--primary-gradient);
+  color: white;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button p {
+  margin-bottom: 0.14rem;
+  padding: 0.1rem 0.3rem;
 }

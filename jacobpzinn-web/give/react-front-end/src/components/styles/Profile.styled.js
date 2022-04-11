@@ -15,7 +15,7 @@ export const StyledProfile = styled.main`
     flex-direction: column;
     overflow: hidden;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 3rem;
   }
 
   .profile-photo-container {
@@ -24,9 +24,11 @@ export const StyledProfile = styled.main`
   }
 
   .profile-photo {
-    width: min(30vw, 30vh);
-    object-fit: cover;
-    border-radius: 100%;
+    width: min(20vw, 10rem);
+    aspect-ratio: 1;
+    object-fit: scale-down;
+    border-radius: 50%;
+    background-color: var(--primary-dark);
   }
 
   .field-title {
