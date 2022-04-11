@@ -8,28 +8,30 @@ const TextBar = ({ hintTextProp, insertText, returnType, returnInput }) => {
   const [typingTimout, setTypingTimout] = useState(false);
   const [currInput, setCurrInput] = useState("");
 
+
+  useEffect(function clearOnInsert() {
+    if (insertText?.length ?? 0 > 0) setHideText(true)
+  }, [insertText]);
+
   const hideHint = function () {
     setHideText(true);
-    console.log();
   };
 
   function handleInput(input) {
-    
+    if (!hideText) setHideText(true)
     if (typingTimout) {
-      console.log("CLEARING")
       clearTimeout(typingTimout)
     }
 
     setCurrInput(input)
     setTypingTimout(
       setTimeout(function() {
-        console.log(`RETURNING ${returnType} ${input}`)
         returnInput(returnType, input)
       }
       , 500)
     )
-  
   }
+
 
   return (
     <StyledTextBar style={{ color: hintTextColor }} onClick={hideHint}>
