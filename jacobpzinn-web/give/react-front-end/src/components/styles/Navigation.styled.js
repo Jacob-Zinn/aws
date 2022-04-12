@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Navigation = styled.ul`
-  display: flex;
+  display: block;
+  width: 100%;
   gap: var(--gap, 1rem);
   list-style: none;
   padding: 0;
@@ -9,6 +10,19 @@ export const Navigation = styled.ul`
   z-index: 1000;
   background-color: transparent;
   backdrop-filter: blur(0.6rem);
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--gap, 1rem);
+  }
+
+  .nav-column {
+    display: flex;
+    gap: var(--gap, 1rem);
+    flex-direction: column;
+
+  }
 
   @media (max-width: 35em) {
     position: fixed;

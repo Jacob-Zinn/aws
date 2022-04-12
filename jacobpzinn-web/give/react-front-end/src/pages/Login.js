@@ -21,7 +21,7 @@ const Login = ({ userLogin }) => {
       lastName: event.target.lname.value,
       username: event.target.username.value,
     };
-    checkUserStatus(userInput)
+    checkUserStatus(userInput);
   }
 
   async function checkUserStatus(user) {
@@ -30,7 +30,7 @@ const Login = ({ userLogin }) => {
       console.log(`RETURNING USER ${response.data}`);
       if (response.data) {
         setUser(response.data);
-        setReturnUserStatus(true)
+        setReturnUserStatus(true);
       } else {
         registerUser(user);
       }
@@ -44,7 +44,7 @@ const Login = ({ userLogin }) => {
       let response = await axios.post(`/api/user`, user);
       console.log(`NEW USER: ${response.data}`);
       setUser(response.data);
-      setReturnUserStatus(false)
+      setReturnUserStatus(false);
     } catch (error) {
       console.log(error);
     }
@@ -78,8 +78,15 @@ const Login = ({ userLogin }) => {
                   />
                   <br />
                   <br />
-                  {/* <label htmlFor="email">email:</label>
-                        <input type="email" id="email" className="login-input" name="email"/><br/><br/>  */}
+                  <label htmlFor="email">email:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="login-input"
+                    name="email"
+                  />
+                  <br />
+                  <br />
                   <label htmlFor="lname">username: </label>
                   <input
                     type="text"
@@ -95,8 +102,22 @@ const Login = ({ userLogin }) => {
             </div>
           )}
 
-          {returnUserStatus ===true && (<h2 className="welcome"> Welcome back,<br/>{user.firstName}</h2>)}
-          {returnUserStatus ===false && (<h2 className="welcome"> Welcome,<br/>{user.firstName}</h2>)}
+          {returnUserStatus === true && (
+            <h2 className="welcome">
+              {" "}
+              Welcome back,
+              <br />
+              {user.firstName}
+            </h2>
+          )}
+          {returnUserStatus === false && (
+            <h2 className="welcome">
+              {" "}
+              Welcome,
+              <br />
+              {user.firstName}
+            </h2>
+          )}
         </div>
       </div>
     </StyledLogin>
