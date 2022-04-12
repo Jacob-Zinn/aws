@@ -56,17 +56,17 @@ const Profile = ({ authUser }) => {
             <div className="flex flex-wrap">
               <div className="flex">
                 <p className="field-title text-gray">first:</p>
-                <p>{authUser.firstName ?? "N/A"}</p>
+                <p>{authUser?.firstName ?? "N/A"}</p>
               </div>
 
               <div className="flex">
                 <p className="field-title text-gray">last:</p>
-                <p>{authUser.lastName ?? "N/A"}</p>
+                <p>{authUser?.lastName ?? "N/A"}</p>
               </div>
 
               <div className="flex">
                 <p className="field-title text-gray">username:</p>
-                <p>{authUser.username ?? "N/A"}</p>
+                <p>{authUser?.username ?? "N/A"}</p>
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@ const Profile = ({ authUser }) => {
           className="mb-3"
         >
           <Tab eventKey="delivered" title="delivered">
-            {!authUser.username && (
+            {!authUser?.username && (
               <div className="flex flex-justify-center">
                 <a href="./login">
                   <StyledButton>
@@ -88,7 +88,7 @@ const Profile = ({ authUser }) => {
               </div>
             )}
 
-            {authUser.username && (
+            {authUser?.username && (
               <div className="grid-container">
                 {messagesSent.map(function (message) {
                   return (
@@ -103,7 +103,7 @@ const Profile = ({ authUser }) => {
             )}
           </Tab>
           <Tab eventKey="received" title="received">
-            {!authUser.username && (
+            {!authUser?.username && (
               <div className="flex flex-justify-center">
                 <a href="./login">
                   <StyledButton>
@@ -113,7 +113,7 @@ const Profile = ({ authUser }) => {
               </div>
             )}
 
-            {authUser.username && (
+            {authUser?.username && (
               <div className="grid-container">
                 {messagesRecieved.map(function (message) {
                   return (

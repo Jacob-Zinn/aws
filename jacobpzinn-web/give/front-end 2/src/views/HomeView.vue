@@ -33,7 +33,7 @@
       <search-bar hintTextProp="i.e. Jacob" />
 
       <div>
-        <button id="previewBtn" class="button">
+        <button id="previewBtn" class="button" @click="previewMessageFun">
           <p>preview message</p>
         </button>
       </div>
@@ -57,10 +57,16 @@ export default {
     let sugg2 = ref(`...happiness`);
     let suggText = ref("");
 
+    let to = ref``
+
     let suggestionInterval: any = null;
 
     const insertQuote = function(matchWord: string) {
       utils.getQuote(matchWord).then((newQuote) => {suggText.value = newQuote});
+    }
+
+    const previewMessageFun = function () {
+      return
     }
 
     onMounted(function () {
@@ -115,7 +121,8 @@ export default {
       sugg1,
       sugg2,
       suggText,
-      insertQuote
+      insertQuote,
+      previewMessageFun
     };
   },
 };
@@ -150,9 +157,6 @@ main {
   text-shadow: 2px 2px var(--lighter-gray);
   color: var(--primary);
   border-bottom: solid 1px var(--primary);
-}
-
-#give-suggestion:hover {
   cursor: pointer;
 }
 

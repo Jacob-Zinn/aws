@@ -37,7 +37,8 @@
     </header>
     <router-view />
     <footer>
-      <a href="https://github.com/Jacob-Zinn/aws/tree/master/jacobpzinn-web/give/vue/give"
+      <a
+        href="https://github.com/Jacob-Zinn/aws/tree/master/jacobpzinn-web/give/vue/give"
         ><img src="./assets/GitHub_Logo.png"
       /></a>
     </footer>
@@ -66,7 +67,6 @@ export default {
     });
 
     let visibility = ref(false);
-    console.log(visibility);
     function toggle() {
       if (visibility.value === false) {
         alert("visible");
@@ -78,7 +78,7 @@ export default {
         // navToggle.setAttribute("data-visible", false);
       }
     }
-    
+
     return {
       visibility,
       toggle,
@@ -283,8 +283,6 @@ a:hover {
     font-size: 18px;
   }
 }
-
-
 
 /* FOOTER */
 
