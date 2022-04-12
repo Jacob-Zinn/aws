@@ -96,7 +96,7 @@ const Login = ({ authUser, userLogin, userLogout }) => {
               <div>
                 <h2>
                   Welcome back,<br />
-                  {authUser.firstName}
+                  {authUser?.firstName}
                 </h2>
                 <StyledButton onClick={logout}>
                   <p>logout</p>

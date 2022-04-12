@@ -121,7 +121,7 @@ const Signup = ({ authUser, userLogin, userLogout }) => {
                 <h2>
                   Welcome,
                   <br />
-                  {authUser.firstName}
+                  {authUser?.firstName}
                 </h2>
                 <StyledButton onClick={logout}>
                   <p>logout</p>
