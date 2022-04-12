@@ -119,7 +119,7 @@ const Home = ({authUser}) => {
       });
       setInvokePreview(false);
       setCopySuccess(false)
-      setShareLink(`http://localhost:3000/gift/${response.data.message._id}`);
+      setShareLink(`https://give.jacobpzinn.com/gift/${response.data.message._id}`);
       console.log(response.data);
     } catch (error) {
       console.log(error);
