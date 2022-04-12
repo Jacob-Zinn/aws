@@ -43,8 +43,8 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/index.html" element={<Home />} />
+          <Route exact path="/" element={<Home authUser={user}/>} />
+          <Route exact path="/index.html" element={<Home authUser={user}/>} />
           <Route path="/inspiration" element={<Inspiration />} />
           <Route path="/profile" element={<Profile authUser={user} />} />
           <Route

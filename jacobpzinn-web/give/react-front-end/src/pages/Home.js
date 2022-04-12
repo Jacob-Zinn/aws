@@ -8,7 +8,7 @@ import { StyledButton } from "../components/styles/Button.styled";
 import axios from "axios";
 import giftSvg from "../assets/gift.svg";
 
-const Home = () => {
+const Home = ({authUser}) => {
   const [sugg, setSugg] = useState("more...");
   // const [sugg2, setSugg2] = useState("");
   const [showSugg, setShowSugg] = useState(false);
@@ -113,13 +113,13 @@ const Home = () => {
 
   async function uploadMessage() {
     try {
-      let response = await axios.post("/api/messages", {
+      let response = await axios.post("/api/messages/", {
         ...userInput,
-        isOutbound: true,
+        originUser: authUser._id,
       });
       setInvokePreview(false);
       setCopySuccess(false)
-      setShareLink(`http://localhost:3000/gift/${response.data._id}`);
+      setShareLink(`http://localhost:3000/gift/${response.data.message._id}`);
       console.log(response.data);
     } catch (error) {
       console.log(error);
