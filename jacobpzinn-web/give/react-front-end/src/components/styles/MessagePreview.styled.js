@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 export const StyledMessagePreview = styled.div`
   display: flex;
-  border: var(--primary) solid 1px;
   border-radius: 1rem;
+  border: 1px solid var(--primary);
   flex-direction: column;
   gap: var(--gap, .5rem);
+  justify-content: space-between;
+
   margin-top: 2.3rem;
   width: 100%;
 

@@ -8,15 +8,13 @@ import giveLogo from "../assets/give-sm.png";
 import { StyledButton } from "../components/styles/Button.styled";
 
 const Profile = ({ authUser }) => {
-  const [inboundMessages, setInboundMessages] = useState([]); // messagesRecieved
-  const [outboundMessages, setOutboundMessages] = useState([]); // messagesSent
+  const [messagesSent, setMessagesSent] = useState([]); // messagesSent
+  const [messagesRecieved, setMessagesRecieved] = useState([]); // messagesRecieved
   const [profileImg, setImg] = useState();
 
-  useEffect(function initAnim() {
+  useEffect(function initMessages() {
     getMessages();
   }, []);
-
-  useEffect(function initAnim() {}, [inboundMessages]);
 
   useEffect(function initProfilePic() {
     // getProfilePic();
@@ -33,13 +31,8 @@ const Profile = ({ authUser }) => {
   async function getMessages() {
     try {
       let response = await axios.get("/api/messages/");
-      console.log(response.data)
-      setOutboundMessages(
-        response.data.filter((message) => message.isOutbound)
-      );
-      setInboundMessages(
-        response.data.filter((message) => !message.isOutbound)
-      );
+      setMessagesSent(response.data.sent)
+      setMessagesRecieved(response.data.received)
     } catch (error) {
       console.log(error);
     }
@@ -97,7 +90,7 @@ const Profile = ({ authUser }) => {
 
             {authUser.username && (
               <div className="grid-container">
-                {outboundMessages.map(function (message) {
+                {messagesSent.map(function (message) {
                   return (
                     <MessagePreview
                       className="grid-item"
@@ -122,7 +115,7 @@ const Profile = ({ authUser }) => {
 
             {authUser.username && (
               <div className="grid-container">
-                {inboundMessages.map(function (message) {
+                {messagesRecieved.map(function (message) {
                   return (
                     <MessagePreview
                       className="grid-item"

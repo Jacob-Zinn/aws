@@ -132,18 +132,6 @@ const Home = ({authUser}) => {
     setUserInput(newObj);
   }
 
-  function testInput() {
-    console.log("testing");
-    setEnablePreview(true);
-    setUserInput({
-      to: "Jacob Zinn",
-      from: "Your favorite person",
-      message:
-        "I was just thinking about you today. You're the best. Have fun blowing out the candle!",
-    });
-    setInvokePreview(true);
-  }
-
   function copyToClipboard(e) {
     navigator.clipboard.writeText(shareLink);
     setCopySuccess(true)
@@ -152,10 +140,6 @@ const Home = ({authUser}) => {
   return (
     <main className="flex">
       <div className="content flex">
-
-        <StyledButton onClick={testInput}>
-          <p>TEST DELETE</p>
-        </StyledButton>
 
         <div className="flex title">
           <h1>give</h1>
@@ -177,8 +161,7 @@ const Home = ({authUser}) => {
         </div>
         <p className="description">
           A simple site that gives you an excuse to change the world. Type any
-          message you'd like, and we'll help you share it with anyone you'd
-          like.
+          message you'd like, and we'll help you share it with those that you care about.
         </p>
 
         <div>
@@ -212,8 +195,6 @@ const Home = ({authUser}) => {
             returnInput={addInput}
           />
         </div>
-
-        {!enablePreview && invokePreview && <div>"Testing"</div>}
 
         <div>
           <StyledButton
