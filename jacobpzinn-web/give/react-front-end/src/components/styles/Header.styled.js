@@ -16,9 +16,12 @@ export const StyledHeader = styled.header`
   }
 
   .profile {
-    margin: 2rem;
+    margin: 0 3rem 0 1rem;
     background-color: var(--primary);
     object-fit: contain;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
   }
 
   .mobile-nav-toggle {
@@ -49,9 +52,6 @@ export const StyledHeader = styled.header`
       position: absolute;
       margin: 0;
       top: 3.3rem;
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
       right: 45%;
       z-index: 1000;
       animation: fadeIn 500ms ease;

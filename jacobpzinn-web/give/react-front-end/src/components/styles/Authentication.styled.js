@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-export const StyledLogin = styled.main`
+export const StyledAuth = styled.main`
   width: 100%;
   height: 100%;
   flex-grow: 1;
   display: flex;
 
-  .login-container {
+  .container {
     height: 100%;
     width: 100%;
     position: relative;
   }
 
-  .login-bg {
+  .bg {
     position: absolute;
     inset: 0 0 0 0;
     border-radius: 1rem;
@@ -21,7 +21,7 @@ export const StyledLogin = styled.main`
     object-fit: cover;
   }
 
-  .login-container::after {
+  .container::after {
     position: absolute;
     height: 100%;
     border-radius: 1rem;
@@ -33,7 +33,7 @@ export const StyledLogin = styled.main`
     content: "";
   }
 
-  .login-form-container {
+  .form-container {
     position: absolute;
     inset: 0 0 0 0;
     width: 100%;
@@ -43,12 +43,12 @@ export const StyledLogin = styled.main`
     align-items: center;
   }
 
-  .login-form {
+  .form {
     justify-content: center;
     flex-direction: column;
   }
 
-  .login-input {
+  .input {
     background-color: transparent;
     border-radius: 1rem;
     border: 1px var(--dark-gray) solid;
@@ -56,19 +56,30 @@ export const StyledLogin = styled.main`
     margin-left: 0.3rem;
   }
 
-  .login-input:focus-within {
+  .input:focus-within {
     outline-color: var(--primary);
   }
 
-  .login-input:focus-within,
-  .login-input:hover {
+  .input:focus-within,
+  .input:hover {
     box-shadow: 1px 1px 8px 1px var(--light-gray);
   }
 
-  .login-form .button {
+  .form .button {
     border-color: black;
     color: black;
     padding: 0.1rem 0.5rem;
+  }
+
+  .button:hover {
+    color: white;
+    cursor: pointer;
+    border-color: white;
+  }
+
+  .error-response {
+    color: red;
+    z-index: 100;
   }
 
   .welcome {

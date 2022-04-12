@@ -4,38 +4,41 @@ import { StyledAuth } from "../components/styles/Authentication.styled";
 import bgPng from "../assets/color-bg.png";
 import { StyledButton } from "../components/styles/Button.styled";
 
-const Login = ({ authUser, userLogin, userLogout }) => {
+const Signup = ({ authUser, userLogin, userLogout }) => {
   const [success, setSuccess] = useState(false); // returning or new user
   const [forbiddenResponse, setForbiddenResponse] = useState(false);
+  const [badRequest, setBadRequest] = useState(false);
 
-  useEffect(
-    function checkAuth() {
-      if (authUser?.username) {
+  useEffect(function checkAuth() {
+    if (authUser?.username) {
         setSuccess(true);
-      }
-    },
-    [authUser]
-  );
+    }
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
     const userInput = {
+      firstName: event.target.fname.value,
+      lastName: event.target.lname.value,
       username: event.target.username.value,
       password: event.target.password.value,
     };
-    loginUser(userInput);
+    registerUser(userInput);
   }
 
-  async function loginUser(userInput) {
+  async function registerUser(userInput) {
     try {
-      let response = await axios.post(`/api/users/login`, { ...userInput });
-      if (response.data) {
-        userLogin(response.data.user);
-        setSuccess(true);
-      }
+      let response = await axios.post(`/api/users/`, { ...userInput });
+      userLogin(response.data.user);
+      setSuccess(true);
     } catch (error) {
       if (error.response.status === 403) {
         setForbiddenResponse(true);
+        setBadRequest(false);
+      }
+      if (error.response.status === 400) {
+        setBadRequest(true);
+        setForbiddenResponse(false);
       }
       console.log(error);
     }
@@ -60,8 +63,26 @@ const Login = ({ authUser, userLogin, userLogout }) => {
           {!success && (
             <div className="form-container flex">
               <div className="form flex">
-                <h1>login</h1>
+                <h1>signup</h1>
                 <form onSubmit={handleSubmit}>
+                  <label htmlFor="fname">first name:</label>
+                  <input
+                    type="text"
+                    id="fname"
+                    className="input"
+                    name="fname"
+                  />
+                  <br />
+                  <br />
+                  <label htmlFor="lname">last name: </label>
+                  <input
+                    type="text"
+                    id="lname"
+                    className="input"
+                    name="lname"
+                  />
+                  <br />
+                  <br />
                   <label htmlFor="lname">username: </label>
                   <input
                     type="text"
@@ -83,8 +104,11 @@ const Login = ({ authUser, userLogin, userLogout }) => {
                   <input type="submit" className="button" value="Submit" />
                 </form>
                 {forbiddenResponse && (
+                  <p className="error-response">username already exists</p>
+                )}
+                {badRequest && (
                   <p className="error-response">
-                    username or password is incorrect
+                    please fill the missing information
                   </p>
                 )}
               </div>
@@ -95,7 +119,8 @@ const Login = ({ authUser, userLogin, userLogout }) => {
             <div className="welcome">
               <div>
                 <h2>
-                  Welcome back,<br />
+                  Welcome,
+                  <br />
                   {authUser.firstName}
                 </h2>
                 <StyledButton onClick={logout}>
@@ -110,4 +135,4 @@ const Login = ({ authUser, userLogin, userLogout }) => {
   );
 };
 
-export default Login;
+export default Signup;

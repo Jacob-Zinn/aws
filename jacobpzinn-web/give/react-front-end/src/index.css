@@ -188,7 +188,6 @@ main {
 .button:hover {
   background-image: var(--primary-gradient);
   text-decoration: none;
-  background-image: var(--primary-gradient);
   color: white;
 }
 

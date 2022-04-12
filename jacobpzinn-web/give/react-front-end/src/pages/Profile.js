@@ -8,8 +8,8 @@ import giveLogo from "../assets/give-sm.png";
 import { StyledButton } from "../components/styles/Button.styled";
 
 const Profile = ({ authUser }) => {
-  const [inboundMessages, setInboundMessages] = useState([]);
-  const [outboundMessages, setOutboundMessages] = useState([]);
+  const [inboundMessages, setInboundMessages] = useState([]); // messagesRecieved
+  const [outboundMessages, setOutboundMessages] = useState([]); // messagesSent
   const [profileImg, setImg] = useState();
 
   useEffect(function initAnim() {
@@ -32,7 +32,8 @@ const Profile = ({ authUser }) => {
 
   async function getMessages() {
     try {
-      let response = await axios.get("/api/messages");
+      let response = await axios.get("/api/messages/");
+      console.log(response.data)
       setOutboundMessages(
         response.data.filter((message) => message.isOutbound)
       );
