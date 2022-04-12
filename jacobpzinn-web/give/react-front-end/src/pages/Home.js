@@ -18,6 +18,7 @@ const Home = () => {
   const [enablePreview, setEnablePreview] = useState(false);
   const [invokePreview, setInvokePreview] = useState(false);
   const [shareLink, setShareLink] = useState("");
+  const [copySuccess, setCopySuccess] = useState(false)
 
   useEffect(function initAnim() {
     startWordTranslationAnimation();
@@ -117,6 +118,7 @@ const Home = () => {
         isOutbound: true,
       });
       setInvokePreview(false);
+      setCopySuccess(false)
       setShareLink(`http://localhost:3000/gift/${response.data._id}`);
       console.log(response.data);
     } catch (error) {
@@ -144,17 +146,13 @@ const Home = () => {
 
   function copyToClipboard(e) {
     navigator.clipboard.writeText(shareLink);
-    // textAreaRef.current.select();
-    // navigator('copy');
-    // This is just personal preference.
-    // I prefer to not show the whole text area selected.
-    // e.target.focus();
-    // setCopySuccess('Copied!');
+    setCopySuccess(true)
   }
 
   return (
     <main className="flex">
       <div className="content flex">
+
         <StyledButton onClick={testInput}>
           <p>TEST DELETE</p>
         </StyledButton>
@@ -284,7 +282,7 @@ const Home = () => {
                     </p>
                   </div>
                   <div
-                    className="share-link"
+                    className={`share-link ${copySuccess && 'clipboard-copy-success'}`}
                     onClick={copyToClipboard}
                     style={{ cursor: "pointer" }}
                   >

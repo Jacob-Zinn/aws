@@ -173,6 +173,11 @@ main {
   opacity: 100%;
 }
 
+.clipboard-copy-success {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
 /* BUTTON */
 .button {
   padding: 0 1rem;
