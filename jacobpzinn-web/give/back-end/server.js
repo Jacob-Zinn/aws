@@ -6,15 +6,20 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// Serve up our application UI
-app.use(express.static(path.join(__dirname, './public')));
+// // Serve up our application UI
+// app.use(express.static(path.join(__dirname, './public')));
 
-// If no API, or exact file, was found then return the app
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, './public/index.html'));
-});
+// // If no API, or exact file, was found then return the app
+// app.use((req, res) => {
+//   res.sendFile(path.join(__dirname, './public/index.html'));
+// });
 
 /* ^ this line ^ tells Express to use the public folder as our static folder from which we can serve static files*/
+
+
+// app.get("/", (req, res) => {
+//     res.sendFile("index.html");
+//   });
 
 // configuring cors
 app.use(function (req, res, next) {
